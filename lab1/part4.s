@@ -5,6 +5,7 @@ N:		.word 5
 _start:
 	ldr r0, =ARRAY  //address of [0], is same as ptr
 	ldr r1, N		// size of array
+	ldr r8, N		//N
 	push {r0,r1} //r0(address)->r1(size)-> stack
 	b sort
 	
@@ -39,7 +40,7 @@ back:
 	bx lr
 increment:	
 	add r1, r1, #1		// j++
-	cmp r1, #5			// j<n
+	cmp r1, r8			// j<n
 	blt check		//when j>=n go back to while
 	b back
 //if (tmp > *(ptr + j))	 tmp = r3, j = r1
